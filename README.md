@@ -208,19 +208,19 @@ $ psql
 Add postgre user with password:
 Sources: Trackets Blog and Super User
 Create user with LOGIN role and set a password:
-# CREATE USER catalog WITH PASSWORD 'PW-FOR-DB'; (# stands for the command prompt in psql)
+### CREATE USER catalog WITH PASSWORD 'PW-FOR-DB'; (# stands for the command prompt in psql)
 Allow the user to create database tables:
-# ALTER USER catalog CREATEDB;
+### ALTER USER catalog CREATEDB;
 *List current roles and their attributes: # \du
 Create database:
-# CREATE DATABASE catalog WITH OWNER catalog;
+### CREATE DATABASE catalog WITH OWNER catalog;
 Connect to the database catalog # \c catalog
 Revoke all rights:
-# REVOKE ALL ON SCHEMA public FROM public;
+### REVOKE ALL ON SCHEMA public FROM public;
 Grant only access to the catalog role:
-# GRANT ALL ON SCHEMA public TO catalog;
+### GRANT ALL ON SCHEMA public TO catalog;
 Exit out of PostgreSQl and the postgres user:
-# \q, then $ exit
+##### \q, then $ exit
 Create postgreSQL database schema:
 $ python database_setup.py
 
