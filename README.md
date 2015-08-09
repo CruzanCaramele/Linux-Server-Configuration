@@ -235,7 +235,7 @@ Source: [DigitalOcean][23] (alternatively, nice short guide on [Kill The Yak][24
 16. Create postgreSQL database schema:  
   $ python database_setup.py
 
-## Run application
+### Run application
 
 1. Restart Apache:  
   `$ sudo service apache2 restart`
@@ -248,48 +248,46 @@ Source: [DigitalOcean][23] (alternatively, nice short guide on [Kill The Yak][24
     Source: [Stackoverflow][28]  
 
 
-## Configure Firewall to monitor for repeated unsuccessful login attempts and ban attackers
-Source: DigitalOcean
+# Exceeds Specification Requirements Below:
 
-Install Fail2ban:
-$ sudo apt-get install fail2ban
-Copy the default config file:
-$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-Check and change the default parameters:
+### Configure Firewall to monitor for repeated unsuccessful login attempts and ban attackers
+Source: [DigitalOcean][15]  
 
-Open the local config file:
-$ sudo nano /etc/fail2ban/jail.local
-Set the following Parameters:
-  set bantime  = 1800  
-  destemail = YOURNAME@DOMAIN  
-  action = %(action_mwl)s  
-  under [ssh] change port = 2220 
-.
-
-Install needed software for our configuration:
-$ sudo apt-get install sendmail iptables-persistent
-
-*Check the current firewall rules:
-$ sudo iptables -S
-Stop the service:
-$ sudo service fail2ban stop
-Start it again:
-$ sudo service fail2ban start
+1. Install Fail2ban:  
+  `$ sudo apt-get install fail2ban`
+2. Copy the default config file:  
+  `$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
+3. Check and change the default parameters:  
+    1. Open the local config file:  
+      `$ sudo vim /etc/fail2ban/jail.local`
+    2. Set the following Parameters:  
+    ```  
+      set bantime  = 2000  
+      destemail = YOURNAME@DOMAIN  
+      action = %(action_mwl)s  
+      under [ssh] change port = 2220  
+    ```    
+4. *Check the current firewall rules:  
+  `$ sudo iptables -S`
+5.   `$ sudo apt-get install sendmail iptables-persistent`  and Stop the service:  
+  `$ sudo service fail2ban stop`
+6. Start it again:  
+  `$ sudo service fail2ban start`
 
 
 ### Install Monitor application Glances
 
-Sources: Glances and Web Host Bug
+Sources: [Web Host Bug][32]
 
-$ sudo apt-get install python-pip build-essential python-dev
-$ sudo pip install Glances
-$ sudo pip install PySensors
+1. `$ sudo apt-get install python-pip build-essential python-dev`
+2. `$ sudo pip install Glances`
+3. `$ sudo pip install PySensors`
 
 **Incase of error in installing PySensors** :
 - install **lm-sensors** first by **sudo apt-get install lm-sensors**, then install PySensors
 
 
-### Include cron scripts to automatically manage package updates
+### Include  automatic manage package updates
 Source: [Ubuntu documentation][7]  
 
 1. Install the unattended-upgrades package:  
