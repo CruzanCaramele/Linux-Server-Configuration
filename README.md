@@ -4,41 +4,36 @@ A baseline installation of Ubuntu Linux on a virtual machine to host a Flask web
 
 ![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
 
-##User Management: Create a new user and give user the permission to sudo
-Source: DigitalOcean
+###User Management: Create a new user and give user the permission to sudo
+References: [DigitalOcean][4]  [Ask Ubuntu][5]
 
-Create a new user:
-$ adduser NEWUSER
-Give new user the permission to sudo
-Open the sudo configuration:
-$ visudo
-Add the following line below root ALL...:
-NEWUSER ALL=(ALL:ALL) ALL
-*List all users (Source: Ask Ubuntu):
-$ cut -d: -f1 /etc/passwd
+1. Create a new user:  
+  `$ adduser NEWUSER`
+2. Give new user the permission to sudo
+  1. Open the sudo configuration:  
+    `$ visudo`
+  2. Add the following line below `root ALL...`:  
+    `NEWUSER ALL=(ALL:ALL) ALL`
+  3. *List all users:    
+    `$ cut -d: -f1 /etc/passwd`
 
-##Update and upgrade all currently installed packages
+###Update and upgrade all currently installed packages
 
-Source: Ask Ubuntu
+Reference: [Ask Ubuntu][6]  
+    
+1. Update the list of available packages and their versions:  
+  `$ sudo apt-get update`
+2. Install newer vesions of packages you have:  
+  `$ sudo sudo apt-get upgrade`
 
-Update the list of available packages and their versions:
-$ sudo apt-get update
-Install newer vesions of packages you have:
-$ sudo sudo apt-get upgrade
 
 ##Change the SSH port from 22 to 2200 and configure SSH access
-Source: Ask Ubuntu
+Reference: [Ask Ubuntu][8]  
 
-Change ssh config file:
-Open the config file:
-$ vim /etc/ssh/sshd_config
-Change to Port 2200.
-Change PermitRootLogin from without-password to no.
-* To get more detailed logging messasges, open /var/log/auth.log and change LogLevel from INFO to VERBOSE.
-Temporalily change PasswordAuthentication from no to yes.
-Append UseDNS no.
-Append AllowUsers NEWUSER.
-Note: All options on UNIXhelp
+1. Change ssh config file:
+  1. Open the config file:  
+    `$ nano /etc/ssh/sshd_config` 
+  2. Change to Port 2200.
 
 ##Configure Uncomplicated Firewall (UFW)
 Source: Ubuntu documentation
@@ -272,3 +267,43 @@ $ sudo pip install PySensors
 
 **Incase of error in installing PySensors** :
 - install **lm-sensors** first by **sudo apt-get install lm-sensors**, then install PySensors
+
+
+
+
+
+
+
+
+1]: https://de.wikipedia.org/wiki/Flask "Wikipedia entry to Flask"
+[2]: https://github.com/stueken/FSND-P3_Music-Catalog-Web-App "GitHub repository of an item catalog web app"
+[3]: https://www.udacity.com/account#!/development_environment "Instructions for SSH access to the instance"
+[4]: https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS"
+[5]: http://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users "How to list, add, delete and modify users"
+[6]: http://askubuntu.com/questions/94102/what-is-the-difference-between-apt-get-update-and-upgrade "What is the difference between apt-get update and upgrade?"
+[7]: https://help.ubuntu.com/community/AutomaticSecurityUpdates "AutomaticSecurityUpdates"
+[8]: http://askubuntu.com/questions/16650/create-a-new-ssh-user-on-ubuntu-server "Create a new SSH user on Ubuntu Server"
+[9]: http://unixhelp.ed.ac.uk/CGI/man-cgi?sshd_config "UNIX man page: SSHD_CONFIG"
+[10]: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server "How To Configure SSH Key-Based Authentication on a Linux Server"
+[11]: http://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none "Error message when I run sudo: unable to resolve host (none)"
+[12]: http://superuser.com/questions/815433/how-urgent-is-a-system-restart-required-for-security "How urgent is a *** System restart required *** for security?"
+[13]: http://askubuntu.com/questions/483670/what-causes-ssh-problems-after-rebooting-a-14-04-server "What causes SSH problems after rebooting a 14.04 server?"
+[14]: https://help.ubuntu.com/community/UFW "UFW - Uncomplicated Firewall"
+[15]: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-fail2ban-on-ubuntu-14-04 "How To Install and Use Fail2ban on Ubuntu 14.04"
+[16]: https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29 "Ubuntu Time Management"
+[17]: http://blog.udacity.com/2015/03/step-by-step-guide-install-lamp-linux-apache-mysql-python-ubuntu.html "A Step by Step Guide to Install LAMP (Linux, Apache, MySQL, Python) on Ubuntu"
+[18]: http://askubuntu.com/questions/256013/could-not-reliably-determine-the-servers-fully-qualified-domain-name "Could not reliably determine the server's fully qualified domain name?"
+[19]: https://help.github.com/articles/set-up-git/#platform-linux "Set Up Git for Linux"
+[20]: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps "How To Deploy a Flask Application on an Ubuntu VPS"
+[21]: http://stackoverflow.com/questions/14695278/python-packages-not-installing-in-virtualenv-using-pip "python packages not installing in virtualenv using pip"
+[22]: http://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible "Make .git directory web inaccessible"
+[23]: https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps "How To Secure PostgreSQL on an Ubuntu VPS"
+[24]: http://killtheyak.com/use-postgresql-with-django-flask/ "All I want to do is use PostgreSQL with Flask or Django."
+[25]: http://blog.trackets.com/2013/08/19/postgresql-basics-by-example.html "PostgreSQL Basics by Example"
+[26]: http://superuser.com/questions/769749/creating-user-with-password-or-changing-password-doesnt-work-in-postgresql "Creating user with password or changing password doesn't work in PostgresQL"
+[27]: https://www.a2hosting.com/kb/developer-corner/apache-web-server/viewing-apache-log-files "How to view Apache log files"
+[28]: http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory "Python: No such file or directory"
+[29]: http://discussions.udacity.com/t/oauth-provider-callback-uris/20460 "OAuth Provider callback uris"
+[30]: http://httpd.apache.org/docs/2.2/en/vhosts/name-based.html "Name-based Virtual Host Support"
+[31]: http://glances.readthedocs.org/en/latest/glances-doc.html#introduction "Glances Documentation"
+[32]: http://www.webhostbug.com/install-use-glances-ubuntudebian/ "How to install and use Glances on Ubuntu/Debian"
