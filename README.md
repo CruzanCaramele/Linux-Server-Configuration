@@ -287,6 +287,9 @@ Sources: [Web Host Bug][32]
 - install **lm-sensors** first by **sudo apt-get install lm-sensors**, then install PySensors
 
 
+![Glances of the Server](/glances.jpg)
+
+
 ### Include  automatic manage package updates
 Source: [Ubuntu documentation][7]  
 
