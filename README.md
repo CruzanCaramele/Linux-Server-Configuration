@@ -2,6 +2,8 @@
 
 A baseline installation of Ubuntu Linux on a virtual machine to host a Flask web application. This includes the installation of updates, securing the system from a number of attack vectors and installing/configuring web and database servers.
 
+![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
+
 ##User Management: Create a new user and give user the permission to sudo
 Source: DigitalOcean
 
