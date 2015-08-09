@@ -237,9 +237,15 @@ Source: [DigitalOcean][23] (alternatively, nice short guide on [Kill The Yak][24
 
 ## Run application
 
-Restart Apache:
-$ sudo service apache2 restart
-Open a browser and put in your public ip-address as url, e.g. http://54.149.38.242 - if everything works, the application should come up
+1. Restart Apache:  
+  `$ sudo service apache2 restart`
+2. Open a browser and put in your public ip-address as url, e.g. http://54.149.46.103/ - if everything works, the application should come up
+3. *If getting an internal server error, check the Apache error files:  
+  Source: [A2 Hosting][27]  
+  1. View the last 30 lines in the error log: 
+    `$ sudo tail -30 /var/log/apache2/error.log`
+  2. *If a file like 'g_client_secrets.json' couldn't been found:  
+    Source: [Stackoverflow][28]  
 
 
 ## Configure Firewall to monitor for repeated unsuccessful login attempts and ban attackers
