@@ -6,7 +6,7 @@ Visit the site at http://54.149.46.103/
 ![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
 
 ###User Management: Create a new user and give user the permission to sudo
-Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS"]
+Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS")
 
 1. Create a new user:  
   `$ adduser NEWUSER`
@@ -20,7 +20,7 @@ Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-t
 
 ###Update and upgrade all currently installed packages
 
-Reference: [Ask Ubuntu][http://askubuntu.com/questions/94102/what-is-the-difference-between-apt-get-update-and-upgrade "What is the difference between apt-get update and upgrade?"]  
+Reference: [Ask Ubuntu](http://askubuntu.com/questions/94102/what-is-the-difference-between-apt-get-update-and-upgrade "What is the difference between apt-get update and upgrade?") 
     
 1. Update the list of available packages and their versions:  
   `$ sudo apt-get update`
@@ -29,7 +29,7 @@ Reference: [Ask Ubuntu][http://askubuntu.com/questions/94102/what-is-the-differe
 
 
 ###Change the SSH port from 22 to 2200 and configure SSH access
-Reference: [Ask Ubuntu][http://askubuntu.com/questions/16650/create-a-new-ssh-user-on-ubuntu-server "Create a new SSH user on Ubuntu Server"]  
+Reference: [Ask Ubuntu](http://askubuntu.com/questions/16650/create-a-new-ssh-user-on-ubuntu-server "Create a new SSH user on Ubuntu Server")  
 
 1. Change ssh config file:
   1. Open the config file:  
@@ -37,7 +37,7 @@ Reference: [Ask Ubuntu][http://askubuntu.com/questions/16650/create-a-new-ssh-us
   2. Change to Port 2200 and **service ssh restart**
 
 ###Configure Uncomplicated Firewall (UFW)
-Reference: [Ubuntu documentation][https://help.ubuntu.com/community/UFW "UFW - Uncomplicated Firewall"]  
+Reference: [Ubuntu documentation](https://help.ubuntu.com/community/UFW "UFW - Uncomplicated Firewall") 
 
 1. Turn UFW on with the default set of rules:  
   `$ sudo ufw enable` 
@@ -52,7 +52,7 @@ Reference: [Ubuntu documentation][https://help.ubuntu.com/community/UFW "UFW - U
 
 
 ### Configure the local timezone to UTC
-Reference: [Ubuntu documentation][ https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29 "Ubuntu Time Management"]
+Reference: [Ubuntu documentation](https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29 "Ubuntu Time Management")
 
 1. Open the timezone selection dialog:  
   `$ sudo dpkg-reconfigure tzdata`
@@ -66,7 +66,7 @@ Reference: [Ubuntu documentation][ https://help.ubuntu.com/community/UbuntuTime#
 
 
 ### Install and configure Apache to serve a Python mod_wsgi application
-Reference: [Udacity][http://blog.udacity.com/2015/03/step-by-step-guide-install-lamp-linux-apache-mysql-python-ubuntu.html "A Step by Step Guide to Install LAMP (Linux, Apache, MySQL, Python) on Ubuntu"]
+Reference: [Udacity](http://blog.udacity.com/2015/03/step-by-step-guide-install-lamp-linux-apache-mysql-python-ubuntu.html "A Step by Step Guide to Install LAMP (Linux, Apache, MySQL, Python) on Ubuntu")
 
 1. Install Apache web server:  
   `$ sudo apt-get install apache2`\
@@ -75,14 +75,14 @@ Reference: [Udacity][http://blog.udacity.com/2015/03/step-by-step-guide-install-
 3. Restart the Apache server for mod_wsgi to load:  
   `$ sudo service apache2 restart`  
 4. *Get rid of the message "Could not reliably determine the servers's fully qualified domain name" after restart
-  Reference: [Ask Ubuntu][http://askubuntu.com/questions/256013/could-not-reliably-determine-the-servers-fully-qualified-domain-name "Could not reliably determine the server's fully qualified domain name?"]
+  Reference: [Ask Ubuntu](http://askubuntu.com/questions/256013/could-not-reliably-determine-the-servers-fully-qualified-domain-name "Could not reliably determine the server's fully qualified domain name?")
   1. Create an empty Apache config file with the hostname:  
     `$ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf`
   2. Enable the new config file:  
     `$ sudo a2enconf fqdn`
 
 ###  Install and configure git
-Reference: [GitHub][https://help.github.com/articles/set-up-git/#platform-linux "Set Up Git for Linux"]
+Reference: [GitHub](https://help.github.com/articles/set-up-git/#platform-linux "Set Up Git for Linux")
         
 1. Install Git:  
   `$ sudo apt-get install git`
@@ -92,7 +92,7 @@ Reference: [GitHub][https://help.github.com/articles/set-up-git/#platform-linux 
   `$ git config --global user.email "YOUR EMAIL ADDRESS"`
 
 ### Setup for deploying a Flask Application on Ubuntu VPS
-Reference: [DigitalOcean][ https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps "How To Deploy a Flask Application on an Ubuntu VPS"]
+Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps "How To Deploy a Flask Application on an Ubuntu VPS")
 
 1. Extend Python with additional packages that enable Apache to serve Flask applications:  
   `$ sudo apt-get install libapache2-mod-wsgi python-dev`
@@ -185,7 +185,7 @@ Reference: [DigitalOcean][ https://www.digitalocean.com/community/tutorials/how-
   `$ git clone -b PostgreSQL https://github.com/CruzanCaramele/Got-Room.git`
 2. Move all content of created GotRoom directory to `/var/www/GotRoom/GotRoom/`-directory and delete the leftover empty directory.
 3. Make the GitHub repository inaccessible:  
-  Reference: [Stackoverflow][http://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible "Make .git directory web inaccessible"]
+  Reference: [Stackoverflow](http://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible "Make .git directory web inaccessible")
   1. Create and open .htaccess file:  
     `$ cd /var/www/GotRoom/` and `$ sudo nano .htaccess` 
   2. Paste in the following:  
@@ -195,7 +195,7 @@ Reference: [DigitalOcean][ https://www.digitalocean.com/community/tutorials/how-
 pip install -r requirements.txt
 
 ###  Install and configure PostgreSQL
-Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps "How To Secure PostgreSQL on an Ubuntu VPS"] 
+Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps "How To Secure PostgreSQL on an Ubuntu VPS")
 
 1. Install PostgreSQL:  
   `$ sudo apt-get install postgresql postgresql-contrib`
@@ -215,7 +215,7 @@ Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-t
 9. Connect to the system:  
   `$ psql`
 10. Add postgre user with password:  
-  References: [Trackets Blog][http://blog.trackets.com/2013/08/19/postgresql-basics-by-example.html "PostgreSQL Basics by Example"] 
+  References: [Trackets Blog](http://blog.trackets.com/2013/08/19/postgresql-basics-by-example.html "PostgreSQL Basics by Example")
   1. Create user with LOGIN role and set a password:  
     `# CREATE USER catalog WITH PASSWORD 'PW-FOR-DB';` (# stands for the command prompt in psql)
   2. Allow the user to create database tables:  
@@ -245,13 +245,13 @@ Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-t
   1. View the last 30 lines in the error log: 
     `$ sudo tail -30 /var/log/apache2/error.log`
   2. *If a file like 'g_client_secrets.json' couldn't been found:  
-    Reference: [Stackoverflow][http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory "Python: No such file or directory"]  
+    Reference: [Stackoverflow](http://stackoverflow.com/questions/12201928/python-open-method-ioerror-errno-2-no-such-file-or-directory "Python: No such file or directory")  
 
 
 ## Exceeds Specification Requirements Below:
 
 ### Configure Firewall to monitor for repeated unsuccessful login attempts and ban attackers
-Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-to-install-and-use-fail2ban-on-ubuntu-14-04 "How To Install and Use Fail2ban on Ubuntu 14.04"]  
+Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-fail2ban-on-ubuntu-14-04 "How To Install and Use Fail2ban on Ubuntu 14.04")
 
 1. Install Fail2ban:  
   `$ sudo apt-get install fail2ban`
@@ -277,7 +277,7 @@ Reference: [DigitalOcean][https://www.digitalocean.com/community/tutorials/how-t
 
 ### Install Monitor application Glances
 
-References: [Web Host Bug][ http://www.webhostbug.com/install-use-glances-ubuntudebian/ "How to install and use Glances on Ubuntu/Debian"]
+References: [Web Host Bug](http://www.webhostbug.com/install-use-glances-ubuntudebian/ "How to install and use Glances on Ubuntu/Debian")
 
 1. `$ sudo apt-get install python-pip build-essential python-dev`
 2. `$ sudo pip install Glances`
@@ -291,7 +291,7 @@ References: [Web Host Bug][ http://www.webhostbug.com/install-use-glances-ubuntu
 
 
 ### Include  automatic manage package updates
-Reference: [Ubuntu documentation][https://help.ubuntu.com/14.04/serverguide/automatic-updates.html]  
+Reference: [Ubuntu documentation](https://help.ubuntu.com/14.04/serverguide/automatic-updates.html) 
 
 1. Install the unattended-upgrades package:  
   `$ sudo apt-get install unattended-upgrades`
