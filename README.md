@@ -52,17 +52,17 @@ Reference: [Ubuntu documentation][14]
 
 
 ## Configure the local timezone to UTC
-Source: Ubuntu documentation
+Source: [Ubuntu documentation][16]
 
-Open the timezone selection dialog:
-$ sudo dpkg-reconfigure tzdata
-Then chose 'None of the above', then UTC.
-*Setup the ntp daemon ntpd for regular and improving time sync:
-$ sudo apt-get install ntp
-*Chose closer NTP time servers:
-Open the NTP configuration file:
-$ sudo vim /etc/ntp.conf
-Open http://www.pool.ntp.org/en/ and choose the pool zone closest to you and replace the given servers with the new server list.
+1. Open the timezone selection dialog:  
+  `$ sudo dpkg-reconfigure tzdata`
+2. Then chose 'None of the above', then UTC.
+3. *Setup the ntp daemon ntpd for regular and improving time sync:  
+  `$ sudo apt-get install ntp`
+4. *Chose closer NTP time servers:  
+  1. Open the NTP configuration file:  
+    `$ sudo vim /etc/ntp.conf`
+  2. Open http://www.pool.ntp.org/en/ and choose the pool zone closest to you and replace the given servers with the new server list.  
 
 
 ## Install and configure Apache to serve a Python mod_wsgi application
