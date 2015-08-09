@@ -1,6 +1,7 @@
 #Linux-Server-Configuration
 
 A baseline installation of Ubuntu Linux on a virtual machine to host a Flask web application. This includes the installation of updates, securing the system from a number of attack vectors and installing/configuring web and database servers.
+Visit the site at http://54.149.46.103/
 
 ![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
 
@@ -33,7 +34,7 @@ Reference: [Ask Ubuntu][8]
 1. Change ssh config file:
   1. Open the config file:  
     `$ nano /etc/ssh/sshd_config` 
-  2. Change to Port 2200.
+  2. Change to Port 2200 and **service ssh restart**
 
 ##Configure Uncomplicated Firewall (UFW)
 Source: Ubuntu documentation
@@ -257,7 +258,7 @@ Start it again:
 $ sudo service fail2ban start
 
 
-## Install Monitor application Glances
+### Install Monitor application Glances
 
 Sources: Glances and Web Host Bug
 
@@ -269,7 +270,17 @@ $ sudo pip install PySensors
 - install **lm-sensors** first by **sudo apt-get install lm-sensors**, then install PySensors
 
 
+### Include cron scripts to automatically manage package updates
+Source: [Ubuntu documentation][7]  
 
+1. Install the unattended-upgrades package:  
+  `$ sudo apt-get install unattended-upgrades`
+2. Enable the unattended-upgrades package:  
+  `$ sudo dpkg-reconfigure -plow unattended-upgrades`
+3. email an administrator information about any packages on the system that have updates available:  
+  `$ sudo apt-get install apticron`
+4. Change Email in /etc/apticron/apticron.conf to :  
+  `EMAIL="root@example.com`
 
 
 
