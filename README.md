@@ -51,176 +51,189 @@ Reference: [Ubuntu documentation][14]
   `$ sudo ufw allow 123/udp` 
 
 
-## Configure the local timezone to UTC
+### Configure the local timezone to UTC
 Source: [Ubuntu documentation][16]
 
 1. Open the timezone selection dialog:  
   `$ sudo dpkg-reconfigure tzdata`
 2. Then chose 'None of the above', then UTC.
-3. *Setup the ntp daemon ntpd for regular and improving time sync:  
+3. *Setup for time synchroniztion:  
   `$ sudo apt-get install ntp`
 4. *Chose closer NTP time servers:  
   1. Open the NTP configuration file:  
-    `$ sudo vim /etc/ntp.conf`
+    `$ sudo nano /etc/ntp.conf`
   2. Open http://www.pool.ntp.org/en/ and choose the pool zone closest to you and replace the given servers with the new server list.  
 
 
-## Install and configure Apache to serve a Python mod_wsgi application
-Source: Udacity
+### Install and configure Apache to serve a Python mod_wsgi application
+Source: [Udacity][17]
 
-Install Apache web server:
-$ sudo apt-get install apache2
-Open a browser and open your public ip address, e.g. http://52.25.0.41/ - It should say 'It works!' on the top of the page.
-Install mod_wsgi for serving Python apps from Apache and the helper package python-setuptools:
-$ sudo apt-get install python-setuptools libapache2-mod-wsgi
-Restart the Apache server for mod_wsgi to load:
-$ sudo service apache2 restart
-*Get rid of the message "Could not reliably determine the servers's fully qualified domain name" after restart Source: Ask Ubuntu
-Create an empty Apache config file with the hostname:
-$ echo "ServerName HOSTNAME" | sudo tee /etc/apache2/conf-available/fqdn.conf
-Enable the new config file:
-$ sudo a2enconf fqdn
+1. Install Apache web server:  
+  `$ sudo apt-get install apache2`\
+2. Install **mod_wsgi** for serving Python apps from Apache and the helper package **python-setuptools**:  
+  `$ sudo apt-get install python-setuptools libapache2-mod-wsgi`
+3. Restart the Apache server for mod_wsgi to load:  
+  `$ sudo service apache2 restart`  
+4. *Get rid of the message "Could not reliably determine the servers's fully qualified domain name" after restart
+  Source: [Ask Ubuntu][18]
+  1. Create an empty Apache config file with the hostname:  
+    `$ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf`
+  2. Enable the new config file:  
+    `$ sudo a2enconf fqdn`
 
-##  Install and configure git
-Source: GitHub
+###  Install and configure git
+Source: [GitHub][19]
+        
+1. Install Git:  
+  `$ sudo apt-get install git`
+2. Set your name, e.g. for the commits:  
+  `$ git config --global user.name "YOUR NAME"`
+3. Set up your email address to connect your commits to your account:  
+  `$ git config --global user.email "YOUR EMAIL ADDRESS"`
 
-Install Git:
-$ sudo apt-get install git
-Set your name, e.g. for the commits:
-$ git config --global user.name "YOUR NAME"
-Set up your email address to connect your commits to your account:
-$ git config --global user.email "YOUR EMAIL ADDRESS"
+### Setup for deploying a Flask Application on Ubuntu VPS
+Source: [DigitalOcean][20]
 
-## Setup for deploying a Flask Application on Ubuntu VPS
-Extend Python with additional packages that enable Apache to serve Flask applications:
-$ sudo apt-get install libapache2-mod-wsgi python-dev
-Enable mod_wsgi (if not already enabled):
-$ sudo a2enmod wsgi
-Create a Flask app:
-Move to the www directory:
-$ cd /var/www
-Setup a directory for the app, e.g. catalog:
-$ sudo mkdir catalog
-$ cd catalog and $ sudo mkdir catalog
-$ cd catalog and $ sudo mkdir static templates
-Create the file that will contain the flask application logic:
-$ sudo nano __init__.py
-Paste in the following code:
-  from flask import Flask  
-  app = Flask(__name__)  
-  @app.route("/")  
-  def hello():  
-    return "Veni vidi vici!!"  
-  if __name__ == "__main__":  
-    app.run()  
-Install Flask
-Install pip installer:
-$ sudo apt-get install python-pip
-Install virtualenv:
-$ sudo pip install virtualenv
-Set virtual environment to name 'venv':
-$ sudo virtualenv venv
-Enable all permissions for the new virtual environment (no sudo should be used within):
-Source: Stackoverflow
-$ sudo chmod -R 777 venv
-Activate the virtual environment:
-$ source venv/bin/activate
-Install Flask inside the virtual environment:
-$ pip install Flask
-Run the app:
-$ python __init__.py
-Deactivate the environment:
-$ deactivate
-Configure and Enable a New Virtual Host#
-Create a virtual host config file
-$ sudo nano /etc/apache2/sites-available/catalog.conf
-Paste in the following lines of code and change names and addresses regarding your application:
-  <VirtualHost *:80>
-      ServerName PUBLIC-IP-ADDRESS
-      ServerAdmin admin@PUBLIC-IP-ADDRESS
-      WSGIScriptAlias / /var/www/catalog/catalog.wsgi
-      <Directory /var/www/catalog/catalog/>
-          Order allow,deny
-          Allow from all
-      </Directory>
-      Alias /static /var/www/catalog/catalog/static
-      <Directory /var/www/catalog/catalog/static/>
-          Order allow,deny
-          Allow from all
-      </Directory>
-      ErrorLog ${APACHE_LOG_DIR}/error.log
-      LogLevel warn
-      CustomLog ${APACHE_LOG_DIR}/access.log combined
-  </VirtualHost>
-Enable the virtual host:
-$ sudo a2ensite catalog
-Create the .wsgi File and Restart Apache
+1. Extend Python with additional packages that enable Apache to serve Flask applications:  
+  `$ sudo apt-get install libapache2-mod-wsgi python-dev`
+2. Enable mod_wsgi (if not already enabled):  
+  `$ sudo a2enmod wsgi`
+3. Create a Flask app:  
+  1. Move to the www directory:  
+    `$ cd /var/www`
+  2. Setup a directory for the app, e.g. GotRoom:  
+    1. `$ sudo mkdir GotRoom`  
+    2. `$ cd GotRoom` and `$ sudo mkdir GotRoom`  
+    3. `$ cd GotRoom` and `$ sudo mkdir static templates`  
+    4. Create the file that will contain the flask application logic:  
+      `$ sudo nano __init__.py`
+    5. Paste in the following code:  
+    ```python  
+      from flask import Flask  
+      app = Flask(__name__)  
+      @app.route("/")  
+      def hello():  
+        return "It works yayness"  
+      if __name__ == "__main__":  
+        app.run()  
+    ```  
+4. Install Flask
+  1. Install pip installer:  
+    `$ sudo apt-get install python-pip` 
+  2. Install virtualenv:  
+    `$ sudo pip install virtualenv`
+  3. Set virtual environment to name 'venv':  
+    `$ sudo virtualenv venv`
+  4. Enable all permissions for the new virtual environment (no sudo should be used within):         
+    `$ sudo chmod -R 777 venv`
+  5. Activate the virtual environment:  
+    `$ source venv/bin/activate`
+  6. Install Flask inside the virtual environment:  
+    `$ pip install Flask`
+  7. Run the app:  
+    `$ python __init__.py`
+  8. Deactivate the environment:  
+    `$ deactivate`
+5. Configure and Enable a New Virtual Host#
+  1. Create a virtual host config file  
+    `$ sudo nano /etc/apache2/sites-available/GotRoom.conf`
+  2. Paste in the following lines of code and change names and addresses regarding your application:  
+  ```
+    <VirtualHost *:80>
+        ServerName PUBLIC-IP-ADDRESS
+        ServerAdmin admin@PUBLIC-IP-ADDRESS
+        WSGIScriptAlias / /var/www/GotRoom/GotRoom.wsgi
+        <Directory /var/www/GotRoom/GotRoom/>
+            Order allow,deny
+            Allow from all
+        </Directory>
+        Alias /static /var/www/GotRoom/GotRoom/static
+        <Directory /var/www/GotRoom/GotRoom/static/>
+            Order allow,deny
+            Allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+  ```
+  3. Enable the virtual host:  
+    `$ sudo a2ensite GotRoom`
+6. Create the .wsgi File and Restart Apache
+  1. Create wsgi file:  
+    `$ cd /var/www/GotRoom` and `$ sudo nano GotRoom.wsgi`
+  2. Paste in the following lines of code:  
+  ```
+    #!/usr/bin/python
+    import sys
+    import logging
+    logging.basicConfig(stream=sys.stderr)
+    sys.path.insert(0,"/var/www/GotRoom/")
+    
+    from GotRoom import app as application
+    application.secret_key = 'Add your secret key'
+  ```
+  7. Restart Apache:  
+    `$ sudo service apache2 restart`
 
-Create wsgi file:
-$ cd /var/www/catalog and $ sudo vim catalog.wsgi
-Paste in the following lines of code:
-  #!/usr/bin/python
-  import sys
-  import logging
-  logging.basicConfig(stream=sys.stderr)
-  sys.path.insert(0,"/var/www/catalog/")
 
-  from catalog import app as application
-  application.secret_key = 'Add your secret key'
-Restart Apache:
-$ sudo service apache2 restart
+### Clone GitHub Application repository and make it web inaccessible
 
+#####Clone project 3 solution repository on GitHub, the branch using PostgreSQL:
 
-## Clone GitHub Application repository and make it web inaccessible
+1. Clone project 3 solution repository on GitHub:  
+  `$ git clone -b PostgreSQL https://github.com/CruzanCaramele/Got-Room.git`
+2. Move all content of created GotRoom directory to `/var/www/GotRoom/GotRoom/`-directory and delete the leftover empty directory.
+3. Make the GitHub repository inaccessible:  
+  Source: [Stackoverflow][22]
+  1. Create and open .htaccess file:  
+    `$ cd /var/www/GotRoom/` and `$ sudo nano .htaccess` 
+  2. Paste in the following:  
+    `RedirectMatch 404 /\.git`
 
-Clone project 3 solution repository on GitHub:
-$ git clone https://github.com/CruzanCaramele/Got-Room.git
-Move all content of created Got Room  directory to /var/www/catalog/catalog/-directory and delete the leftover empty directory.
-Make the GitHub repository inaccessible:
-Source: Stackoverflow
-Create and open .htaccess file:
-$ cd /var/www/catalog/ and $ sudo vim .htaccess
-Paste in the following:
-RedirectMatch 404 /\.git
+###### Install needed modules & packages
+pip install -r requirements.txt
 
-##  Install and configure PostgreSQL
-Source: DigitalOcean (alternatively, nice short guide on Kill The Yak as well)
+###  Install and configure PostgreSQL
+Source: [DigitalOcean][23] (alternatively, nice short guide on [Kill The Yak][24] as well)  
 
-Install PostgreSQL:
-$ sudo apt-get install postgresql postgresql-contrib
-Check that no remote connections are allowed (default):
-$ sudo vim /etc/postgresql/9.3/main/pg_hba.conf
-Open the database setup file:
-$ sudo vim database_setup.py
-Change the line starting with "engine" to (fill in a password):
-python engine = create_engine('postgresql://catalog:PW-FOR-DB@localhost/catalog')
-Change the same line in application.py respectively
-Rename application.py:
-$ mv application.py __init__.py
-Create needed linux user for psql:
-$ sudo adduser catalog (choose a password)
-Change to default user postgres:
-$ sudo su - postgre
-Connect to the system:
-$ psql
-Add postgre user with password:
-Sources: Trackets Blog and Super User
-Create user with LOGIN role and set a password:
-### CREATE USER catalog WITH PASSWORD 'PW-FOR-DB'; (# stands for the command prompt in psql)
-Allow the user to create database tables:
-### ALTER USER catalog CREATEDB;
-*List current roles and their attributes: # \du
-Create database:
-### CREATE DATABASE catalog WITH OWNER catalog;
-Connect to the database catalog # \c catalog
-Revoke all rights:
-### REVOKE ALL ON SCHEMA public FROM public;
-Grant only access to the catalog role:
-### GRANT ALL ON SCHEMA public TO catalog;
-Exit out of PostgreSQl and the postgres user:
-##### \q, then $ exit
-Create postgreSQL database schema:
-$ python database_setup.py
+1. Install PostgreSQL:  
+  `$ sudo apt-get install postgresql postgresql-contrib`
+2. Check that no remote connections are allowed (default):  
+  `$ sudo vim /etc/postgresql/9.3/main/pg_hba.conf`
+3. Open the database setup file:  
+  `$ sudo vim database_setup.py`
+4. Change the line starting with "engine" to (fill in a password):  
+  ```python engine = create_engine('postgresql://catalog:PW-FOR-DB@localhost/catalog')```  
+5. Change the same line in application.py respectively
+6. Rename application.py:  
+  `$ mv application.py __init__.py`
+7. Create needed linux user for psql:  
+  `$ sudo adduser catalog` (choose a password)
+8. Change to default user postgres:  
+  `$ sudo su - postgre`
+9. Connect to the system:  
+  `$ psql`
+10. Add postgre user with password:  
+  Sources: [Trackets Blog][25] and [Super User][26]
+  1. Create user with LOGIN role and set a password:  
+    `# CREATE USER catalog WITH PASSWORD 'PW-FOR-DB';` (# stands for the command prompt in psql)
+  2. Allow the user to create database tables:  
+    `# ALTER USER catalog CREATEDB;`
+  3. *List current roles and their attributes:
+    `# \du`
+11. Create database:  
+  `# CREATE DATABASE catalog WITH OWNER catalog;`
+12. Connect to the database catalog
+  `# \c catalog` 
+13. Revoke all rights:  
+  `# REVOKE ALL ON SCHEMA public FROM public;`
+14. Grant only access to the catalog role:  
+  `# GRANT ALL ON SCHEMA public TO catalog;`
+15. Exit out of PostgreSQl and the postgres user:  
+  `# \q`, then `$ exit` 
+16. Create postgreSQL database schema:  
+  $ python database_setup.py
 
 ## Run application
 
@@ -239,7 +252,7 @@ $ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 Check and change the default parameters:
 
 Open the local config file:
-$ sudo vim /etc/fail2ban/jail.local
+$ sudo nano /etc/fail2ban/jail.local
 Set the following Parameters:
   set bantime  = 1800  
   destemail = YOURNAME@DOMAIN  
@@ -287,7 +300,7 @@ Source: [Ubuntu documentation][7]
 
 
 1]: https://de.wikipedia.org/wiki/Flask "Wikipedia entry to Flask"
-[2]: https://github.com/stueken/FSND-P3_Music-Catalog-Web-App "GitHub repository of an item catalog web app"
+[2]: https://github.com/stueken/FSND-P3_Music-GotRoom-Web-App "GitHub repository of an item GotRoom web app"
 [3]: https://www.udacity.com/account#!/development_environment "Instructions for SSH access to the instance"
 [4]: https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS"
 [5]: http://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users "How to list, add, delete and modify users"
