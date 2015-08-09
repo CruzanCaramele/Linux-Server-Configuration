@@ -36,19 +36,19 @@ Reference: [Ask Ubuntu][8]
     `$ nano /etc/ssh/sshd_config` 
   2. Change to Port 2200 and **service ssh restart**
 
-##Configure Uncomplicated Firewall (UFW)
-Source: Ubuntu documentation
+###Configure Uncomplicated Firewall (UFW)
+Reference: [Ubuntu documentation][14]  
 
-Turn UFW on with the default set of rules:
-$ sudo ufw enable
-*Check the status of UFW:
-$ sudo ufw status verbose
-Allow incoming TCP packets on port 2200 (SSH):
-$ sudo ufw allow 2200/tcp
-Allow incoming TCP packets on port 80 (HTTP):
-$ sudo ufw allow 80/tcp
-Allow incoming UDP packets on port 123 (NTP):
-$ sudo ufw allow 123/udp
+1. Turn UFW on with the default set of rules:  
+  `$ sudo ufw enable` 
+2. *Check the status of UFW:  
+  `$ sudo ufw status verbose`
+3. Allow incoming TCP packets on port 2200 (SSH):  
+  `$ sudo ufw allow 2200/tcp` 
+4. Allow incoming TCP packets on port 80 (HTTP):  
+  `$ sudo ufw allow 80/tcp` 
+5. Allow incoming UDP packets on port 123 (NTP):  
+  `$ sudo ufw allow 123/udp` 
 
 
 ## Configure the local timezone to UTC
