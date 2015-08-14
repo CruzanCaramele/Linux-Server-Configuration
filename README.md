@@ -3,9 +3,9 @@
 A baseline installation of Ubuntu Linux on a virtual machine to host a Flask web application. This includes the installation of updates, securing the system from a number of attack vectors and installing/configuring web and database servers.
 Visit the site at http://54.149.46.103/
 
-**SSH PORT** ---> **2200**
-**PUBLIC IP** -->  **54.149.46.103**
-**APPLICATION URL** --> **http://54.149.46.103/**
+- **SSH PORT** ---> **2200**
+- **PUBLIC IP** -->  **54.149.46.103**
+- **APPLICATION URL** --> **http://54.149.46.103/**
 
 ![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
 
