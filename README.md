@@ -3,7 +3,13 @@
 A baseline installation of Ubuntu Linux on a virtual machine to host a Flask web application. This includes the installation of updates, securing the system from a number of attack vectors and installing/configuring web and database servers.
 Visit the site at http://54.149.46.103/
 
+**SSH PORT** ---> **2200**
+**PUBLIC IP** -->  **54.149.46.103**
+**APPLICATION URL** --> **http://54.149.46.103/**
+
 ![Got-Room Web Application](/uni.jpg "http://54.149.46.103/")
+
+
 
 ###User Management: Create a new user and give user the permission to sudo
 Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS")
@@ -223,9 +229,9 @@ Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-t
 1. Install PostgreSQL:  
   `$ sudo apt-get install postgresql postgresql-contrib`
 2. Check that no remote connections are allowed (default):  
-  `$ sudo vim /etc/postgresql/9.3/main/pg_hba.conf`
+  `$ sudo nano /etc/postgresql/9.3/main/pg_hba.conf`
 3. Open the database setup file:  
-  `$ sudo vim database_setup.py`
+  `$ sudo nano database_setup.py`
 4. Change the line starting with "engine" to (fill in a password):  
   ```python engine = create_engine('postgresql://catalog:PW-FOR-DB@localhost/catalog')```  
 5. Change the same line in application.py respectively
@@ -282,7 +288,7 @@ Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-t
   `$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
 3. Check and change the default parameters:  
     1. Open the local config file:  
-      `$ sudo vim /etc/fail2ban/jail.local`
+      `$ sudo nano /etc/fail2ban/jail.local`
     2. Set the following Parameters:  
     ```  
       set bantime  = 2000  
