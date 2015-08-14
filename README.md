@@ -9,14 +9,17 @@ Visit the site at http://54.149.46.103/
 Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps "How To Add and Delete Users on an Ubuntu 14.04 VPS")
 
 1. Create a new user:  
-  `$ adduser NEWUSER`
-2. Give new user the permission to sudo
-  1. Open the sudo configuration:  
-    `$ visudo`
-  2. Add the following line below `root ALL...`:  
-    `NEWUSER ALL=(ALL:ALL) ALL`
-  3. *List all users:    
-    `$ cut -d: -f1 /etc/passwd`
+  `$ adduser NEWUSER (grader)`
+2. Install finger , sudo apt-get install finger
+  verify user has been added by **finger NEWUSER**
+
+#### Grant NEWUSER (grader) permission to sudo
+1. access sudoers.d by **cd /etc/sudoers.d**
+2. create new file as grader **touch grader**
+3. add the following and save --> **grader ALL=(ALL) NOPASSWD:ALL**
+4. log onto the server with user grader
+
+
 
 ###Update and upgrade all currently installed packages
 
@@ -49,6 +52,26 @@ Reference: [Ubuntu documentation](https://help.ubuntu.com/community/UFW "UFW - U
   `$ sudo ufw allow 80/tcp` 
 5. Allow incoming UDP packets on port 123 (NTP):  
   `$ sudo ufw allow 123/udp` 
+
+#### Allow grader to ssh into the server 
+1. Generate new RSA key on local computer by --> **ssh-keygen**
+2. save the 2 files to home folder location in a folder called .ssh (one will have .pub as extension)
+3. On the Ubuntu server access grader home directory
+4. create .ssh directory --> **mkdir .ssh**
+5. create new file --> **touch .ssh/authorized keys**
+6. copy the contents of the file with **.pub** extension from the local computer into the authorized_keys file on the 
+ubuntu server and save the file 
+7. set permissions as **chmod 700 .ssh** and **chmod 644 .ssh/authorized_keys**
+8. Now grader can ssh as ssh -i ~/.ssh/NewRSAFile grader@54.149.46.103 -p 2200
+
+
+#### Enforce ssh login only  (Forcing Key-based Authentication)
+1. access **sshd_config** file --> **sudo nano /etc/ssh/sshd_config**
+2. Set **PasswordAuthentication** to **no**
+
+#### Disable Root login for secuity purposes
+1. access **sshd_config** file --> **sudo nano /etc/ssh/sshd_config**
+2. Set **PasswordRootLogin** to **no**
 
 
 ### Configure the local timezone to UTC
